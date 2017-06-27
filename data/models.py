@@ -1,5 +1,6 @@
 from django.db import models
 from django_countries.fields import CountryField
+from djangoyearlessdate.models import YearlessDateField
 
 class Fish(models.Model):
     name = models.CharField(max_length=255)
@@ -26,3 +27,24 @@ class FederalState(models.Model):
 
     def __str__(self):
         return self.name
+
+class ProtectionTime(models.Model):
+    fish = models.ForeignKey('Fish')
+    country = CountryField(null=True, blank=True)
+    federal_state = models.ForeignKey('FederalState', null=True, blank=True)
+    water = models.ForeignKey('Water', null=True, blank=True)
+    start = YearlessDateField()
+    end = YearlessDateField()
+
+    def __str__(self):
+        return self.country.name + self.federal_state.name + self.water.name
+
+class ProtectionTime(models.Model):
+    fish = models.ForeignKey('Fish')
+    country = CountryField(null=True, blank=True)
+    federal_state = models.ForeignKey('FederalState', null=True, blank=True)
+    water = models.ForeignKey('Water', null=True, blank=True)
+    length = models.IntegerField()
+
+    def __str__(self):
+        return self.country.name + self.federal_state.name + self.water.name
