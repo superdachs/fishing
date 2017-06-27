@@ -9,11 +9,13 @@ class Fish(models.Model):
 
 class Water(models.Model):
     name = models.CharField(max_length=255)
-    country = CountryField()
+    country = CountryField(null=True)
     federal_state = models.ForeignKey('FederalState', null=True, blank=True)
     max_depth = models.IntegerField()
-
-
+    water_id = models.CharField(max_length=255, null=True, blank=True)
+    latitude = models.FloatField()
+    longitude = models.FloatField()
+    fishes = models.ManyToManyField('Fish')
 
     def __str__(self):
         return self.name
