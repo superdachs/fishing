@@ -39,7 +39,7 @@ class ProtectionTime(models.Model):
     def __str__(self):
         return self.country.name + self.federal_state.name + self.water.name
 
-class ProtectionTime(models.Model):
+class ProtectionLength(models.Model):
     fish = models.ForeignKey('Fish')
     country = CountryField(null=True, blank=True)
     federal_state = models.ForeignKey('FederalState', null=True, blank=True)
@@ -48,3 +48,4 @@ class ProtectionTime(models.Model):
 
     def __str__(self):
         return self.country.name + self.federal_state.name + self.water.name
+
